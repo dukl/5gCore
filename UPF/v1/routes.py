@@ -8,14 +8,14 @@
 ###
 from __future__ import absolute_import
 
-from .api.UPConfig import CONF
+from .api.UPFAndSMFInterface import INTERFACE
+from .api.UPFAndANInterface import N3
 
-from .api.UEDataTransfer import DATATRANSFER
 
 
 routes = [
-    dict(resource=CONF, urls=['/upConfig'], endpoint='UPConfig'),
+    dict(resource=INTERFACE, urls=['/UpfSmfInterface'], endpoint='UPFAndSMFInterface'),
+    dict(resource=N3, urls=['/eNBUpfInterface'], endpoint='UPFAndANInterface'),
 
-    dict(resource=DATATRANSFER, urls=['/uedata'], endpoint='UEDataTransfer'),
 
 ]

@@ -12,5 +12,5 @@ from .api.UE_Auth import UEAUTH
 
 
 routes = [
-    dict(resource=UEAUTH, urls=['/ueAuth'], endpoint='UE_Auth'),
+    dict(resource=UEAUTH, urls=['/Get'], endpoint='UE_Auth'),
 ]

@@ -8,20 +8,17 @@
 ###
 from __future__ import absolute_import
 
-from .api.eNB import ENB
-from .api.amfOpt1 import AMFOPT1
-from .api.amfOpt2 import AMFOPT2
-from .api.CreateUEContext import CreateUECtx
+from .api.eNBAndAMFInterface import INTERFACEeNBSide
+from .api.n1n2message import N1N2MSG
+
+
+
 
 
 
 routes = [
-    dict(resource=ENB, urls=['/eNB'], endpoint='eNB'),
+    dict(resource=INTERFACEeNBSide, urls=['/amfeNBInterface'], endpoint='eNBAndAMFInterface'),
+    dict(resource=N1N2MSG, urls=['/<int:ueContextID>/n1-n2-messages'], endpoint='n1n2message'),
 
-    dict(resource=AMFOPT1, urls=['/amf_operation_1'], endpoint='amfOpt1'),
-
-    dict(resource=AMFOPT2, urls=['/amf_operation_2'], endpoint='amfOpt2'),
-
-    dict(resource=CreateUECtx, urls=['/create_ue_ctx'], endpoint='CreateUEContext'),
 
 ]

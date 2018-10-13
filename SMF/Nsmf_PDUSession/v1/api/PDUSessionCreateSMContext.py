@@ -3,8 +3,7 @@ from __future__ import absolute_import, print_function
 import operator
 from flask import request, g
 import requests
-#from . import Resource
-#from .. import schemas
+import json
 from flask_restful import Resource,reqparse
 
 from sqlalchemy import Column, String, create_engine,LargeBinary
@@ -12,49 +11,49 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 Base = declarative_base()
 
-#from .. import users
-#from users import Users
-
 parser = reqparse.RequestParser()
+parser.add_argument('RequestType')
+parser.add_argument('PDUSessionID')
+parser.add_argument('PDUType')
 parser.add_argument('imsi')
 
-parser.add_argument('tmsi')
 
-parser.add_argument('key')
-parser.add_argument('opc')
+##create thread
+from threading import Thread
+def SMFDoingSomething(args):
+	print("[SMF][INFO]   "+"UPF selection ...")
+	print("[SMF][INFO]   "+"SMF SENDS N4 SESSION ESTABILISHMENT REQUEST TO UPF")
+	N4SessionEstabilishmentReq = "http://127.0.0.1:5012/nupf/v1/UpfSmfInterface"
+	N4SessionMsg = {"imsi":args['imsi'],"CNTunnelID":"23124","InactivityTimer":"20s","MsgType":"N4SessionEstabilishmentReq"}
+	r = requests.post(N4SessionEstabilishmentReq,data=N4SessionMsg)
+	if r.status_code == 200:
+		print("[SMF][INFO]   "+"SMF RECEIVES N4 SESSION ESTABILISHMENT RESPONSE FROM UPF")
+		data = json.loads(eval((r.content).decode()))
+		N1N2MsgTransfer = "http://127.0.0.1:5001/namf-comm/v1/"+data['imsi']+"/n1-n2-messages"
+		MsgSMF2UE = {"AllocatedUEIp":"172.16.0.2","CNTunnelID":data['CNTunnelID'],"UPFURI":data['UPFURI']}
+		r1 = requests.post(N1N2MsgTransfer,data=MsgSMF2UE)
+		if r1.status_code == 200:
+			print("[SMF][INFO]   SMF SEND BEARER INFO TO AMF")
+		else:
+			print("[SMF][ERROR]  "+"SMF SEND BEARER INFO TO AMF FAILURE")
+	else:
+		print("[SMF][ERROR]  "+"SMF SENDS N4 SESSION ESTABILISHMENT REQUEST FAILURE")
 
-MCC_VALID = "208"
-MNC_VALID = "93"
-TAC_VALID = "1"
+class SMContextCreate(Resource):
 
-info = "                                                                                         "+"|--------------------------------------------------------------|\n"\
-      +"                                                                                         "+"|                       eNB infos table                        |\n"\
-      +"                                                                                         "+"|--------------|---------------|---------------|---------------|\n"\
-      +"                                                                                         "+"        ID            MCC             MNC             TAC\n"\
-      +"                                                                                         "+"|--------------|---------------|---------------|---------------|\n" 
-
-def display(eNBInfo):
-    print(eNBInfo)
-    #print("|--------------|---------------|---------------|---------------|")
-    #print("     ID            MCC             MNC             TAC")
-    #print("|--------------|---------------|---------------|---------------|")
-    #print("    "+ID+"    ","    "+MCC+"    ","       "+MNC+"      ","       "+TAC+"      ")
-class SMContext(Resource):
-    global info
     def __init__(self):
-        self.info = info
-        #print("hello")
+    	pass
+
     def get(self):
         data={'name':"hello",'passwd':"world"}
         return data,200
 
     def post(self):
-        #print("world")
-        url="http://127.0.0.1:5012/Nupf-DataTransfer/v1/upConfig"
-        r = requests.post(url, data="")
-        print (r.status_code)
-        print ((r.content))
-        ConfigOk = b'"config_ok"\n'
-        if r.content == ConfigOk:
-        	print("UP Config successfully!")
-        return "pdusession_create_smctx_ok"
+    	args = parser.parse_args()
+    	if operator.eq(args['RequestType'],"InitialRequest"):
+    		print("[SMF][INFO]   "+"Receved SmCreateContextData From AMF:"+str(args))
+    		print("[SMF][INFO]   "+"Handling PDUSessionCreateReq From AMF ...")
+    		SmContextCreatedData = {"status":'201 Created',"Location":"http://127.0.0.1:5005/nsmf-pdusession/v1/sm-contexts"}
+    		t = Thread(target = SMFDoingSomething,args=(args,))
+    		t.start()
+    		return str(SmContextCreatedData),201

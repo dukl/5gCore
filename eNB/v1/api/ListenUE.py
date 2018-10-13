@@ -13,7 +13,7 @@ parser.add_argument('imsi')
 parser.add_argument('tmsi')
 parser.add_argument('key')
 parser.add_argument('opc')
-
+parser.add_argument('operation')
 MCC_VALID = "208"
 MNC_VALID = "93"
 TAC_VALID = "1"
@@ -44,8 +44,8 @@ class LIUE(Resource):
         #print(info)
         url="http://127.0.0.1:5001/Namf-Communication/v1/amf_operation_1"
         args = parser.parse_args()
-        payload = {'imsi':args['imsi'],'tmsi':args['tmsi'],'key':args['key'],'opc':args['opc']}
-        r = requests.post(url, data=payload)
+        #payload = {'imsi':args['imsi'],'tmsi':args['tmsi'],'key':args['key'],'opc':args['opc']}
+        r = requests.post(url, data=args)
         print (r.status_code)
         print (r.content)
         attach_success = b'"attach_success"\n'
@@ -68,6 +68,15 @@ class LIUE(Resource):
         #info = self.info 
         #display(self.info)
 
+    def delete(self):
+        #if logs.eNBConnected>=1:
+        	#logs.eNBConnected-=1
+        	#stcs = logs.info+"                                                                                         "+"|    "+repr(logs.eNBConnected)+"           "+"|    "+repr(logs.UEConnected)+"        "+"    |    "+repr(logs.UEAttached)+"         "+"   |    "+repr(logs.s1uBearer)+"            |"+"\n"\
+                #        +"                                                                                         "+"|----------------|-----------------|-----------------|-----------------|\n"
+       		#print(stcs)
+        #else:
+        	#print("no eNB has been connected")
+    	return "delete_eNB_rsp"
         
         
         

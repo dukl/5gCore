@@ -52,3 +52,7 @@ class CONF(Resource):
     	print("config UP successfully!")
     	status.upStatus = b'"upConfigOk"'	
     	return "config_ok"
+
+    def delete(self):
+        status.upStatus = b'"up de Config"'
+        print("release up config")

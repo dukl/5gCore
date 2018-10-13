@@ -1,0 +1,13 @@
+ * Serving Flask app "__init__" (lazy loading)
+ * Environment: production
+   WARNING: Do not use the development server in a production environment.
+   Use a production WSGI server instead.
+ * Debug mode: on
+ * Running on http://127.0.0.1:5001/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 817-309-676
+127.0.0.1 - - [05/Oct/2018 16:20:52] "POST /Namf-Communication/v1/eNB HTTP/1.1" 200 -
+127.0.0.1 - - [05/Oct/2018 16:20:52] "POST /Namf-Communication/v1/eNB HTTP/1.1" 200 -
+127.0.0.1 - - [05/Oct/2018 16:20:54] "POST /Namf-Communication/v1/amf_operation_1 HTTP/1.1" 200 -
+127.0.0.1 - - [05/Oct/2018 16:20:54] "POST /Namf-Communication/v1/create_ue_ctx HTTP/1.1" 200 -

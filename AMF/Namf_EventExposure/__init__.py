@@ -14,4 +14,4 @@ def create_app():
     return app
 
 if __name__ == '__main__':
-    create_app(port=5002).run(debug=True)
+    create_app().run(port=5002,debug=True)
