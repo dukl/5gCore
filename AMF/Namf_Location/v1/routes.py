@@ -12,6 +12,6 @@ from .api.ProvideLocation import PROVIDELOCATION
 
 
 routes = [
-    dict(resource=PROVIDELOCATION, urls=['/provide_location'], endpoint='ProvideLocation'),
+    dict(resource=PROVIDELOCATION, urls=['/ue-contexts/<int:ueContext>/provide'], endpoint='ProvideLocation'),
 
 ]

@@ -13,9 +13,14 @@ parser.add_argument('AllocatedUEIp')
 parser.add_argument('CNTunnelID')
 parser.add_argument('UPFURI')
 
+CurrentPath = "~/5GCORE/AMF/Namf_Communication/v1/api/n1n2message.py"
+
 ##create thread
 from threading import Thread
 def AMFNotifyToAN(args,ueContextID):
+	print(CurrentPath+":21   [AMF][INFO]   "+"AMF receives SMF INFOS NOTIFY")
+	print(CurrentPath+":22   [AMF][INFO]   "+"sendind UE Allocated infos to AMF amfeNBInterface")
+	print(CurrentPath+":23   [AMF][INFO]   "+"post http://127.0.0.1:5001/namf-comm/v1/amfeNBInterface")
 	ToAmfANInterface = "http://127.0.0.1:5001/namf-comm/v1/amfeNBInterface"
 	Msg = {"MsgType":"ToAmfANInterface","AllocatedUEIp":args['AllocatedUEIp'],"CNTunnelID":args['CNTunnelID'],"UPFURI":args['UPFURI'],"imsi":str(ueContextID)}
 	r = requests.post(ToAmfANInterface,data=Msg)

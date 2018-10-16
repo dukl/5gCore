@@ -17,17 +17,18 @@ parser.add_argument('MsgType')
 parser.add_argument('DeregistrationType')
 parser.add_argument('AccessType')
 
+CurrentPath = "~/5GCORE/SMF/Nsmf_PDUSession/v1/api/PDUSessionReleaseSMContext.py"
 
 class SMContextRelease(Resource):
 
     def post(self,smContextRef):
     	args = parser.parse_args()
-    	print("[SMF][INFO]   "+"Receive deregistration req")
+    	print(CurrentPath+":26   [SMF][INFO]   "+"Receive deregistration req")
     	N4SessionReleaseReq = "http://127.0.0.1:5012/nupf/v1/UpfSmfInterface"
     	r = requests.post(N4SessionReleaseReq, data=args)
     	if r.status_code == 200:
-    		print("[SMF][INFO]   "+"Release SMContext success")
+    		print(CurrentPath+":30   [SMF][INFO]   "+"Release SMContext success")
     		return None,204
     	else:
-     		print("[SMF][ERROR]  "+"No handle for SMF Release SMContext request")
+     		print(CurrentPath+":33   [SMF][ERROR]  "+"No handle for SMF Release SMContext request")
   

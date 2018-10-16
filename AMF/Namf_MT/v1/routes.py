@@ -8,18 +8,14 @@
 ###
 from __future__ import absolute_import
 
-from .api.eNB import ENB
+from .api.ue_reachind import UEREACHIND
+from .api.ProvideDomainSelectionInfo import ProvideInfo
 
-from .api.amfOpt1 import AMFOPT1
-
-from .api.amfOpt2 import AMFOPT2
 
 
 routes = [
-    dict(resource=ENB, urls=['/eNB'], endpoint='eNB'),
+    dict(resource=UEREACHIND, urls=['/ue_contexts/<int:ueContextId>/ue_reachind'], endpoint='ue_reachind'),
+    dict(resource=ProvideInfo, urls=['/ue_contexts/<int:ueContextId>'], endpoint='ProvideDomainSelectionInfo'),
 
-    dict(resource=AMFOPT1, urls=['/amf_operation_1'], endpoint='amfOpt1'),
-
-    dict(resource=AMFOPT2, urls=['/amf_operation_2'], endpoint='amfOpt2'),
 
 ]

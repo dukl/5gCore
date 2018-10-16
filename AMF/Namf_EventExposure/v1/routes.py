@@ -8,16 +8,16 @@
 ###
 from __future__ import absolute_import
 
-from .api.eNB import ENB
+from .api.subscriptions import SUBSCRIPTIONS
+from .api.subscriptions_ref import ONESUBSCRIPTION
 
-from .api.UEActivityNotify import UEACTIVITYNOTIFY
 
 
 
 routes = [
-    dict(resource=ENB, urls=['/eNB'], endpoint='eNB'),
+    dict(resource=SUBSCRIPTIONS, urls=['/subscriptions'], endpoint='subscriptions'),
+    dict(resource=ONESUBSCRIPTION, urls=['/subscriptions/<int:subscriptionId>'], endpoint='subscriptions-ref'),
 
-    dict(resource=UEACTIVITYNOTIFY, urls=['/ue_activity_notify'], endpoint='UEActivityNotify'),
 
 
 ]

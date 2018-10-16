@@ -15,12 +15,13 @@ parser = reqparse.RequestParser()
 parser.add_argument('imsi')
 parser.add_argument('payload')
 
+CurrentPath = "~/5GCORE/UPF/v1/api/UPFAndANInterface.py"
 
 class N3(Resource):
 
 	def post(self):
 		args = parser.parse_args()
-		print("\n\n[UPF][DATA][IND][payload]:   "+str(args['payload'])+"\n\n")
+		print(CurrentPath+":23   [UPF][DATA][IND][payload]:   "+str(args['payload']))
 
 	def delete(self):
 		pass

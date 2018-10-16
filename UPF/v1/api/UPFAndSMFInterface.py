@@ -20,7 +20,7 @@ parser.add_argument('DeregistrationType')
 parser.add_argument('AccessType')
 
 
-
+CurrentPath = "~/5GCORE/UPF/v1/api/UPFAndSMFInterface.py"
 
 
 class INTERFACE(Resource):
@@ -31,10 +31,11 @@ class INTERFACE(Resource):
     def post(self):
     	args = parser.parse_args()
     	if operator.eq(args['MsgType'],"N4SessionEstabilishmentReq"):
-    		print("[UPF][INFO]   "+"UPF RECEIVES N4 SESSION ESTABILISHMENT REQUEST FROM SMF")
+    		print(CurrentPath+":34   [UPF][INFO]   "+"UPF RECEIVES N4 SESSION ESTABILISHMENT REQUEST FROM SMF")
+    		print(CurrentPath+":35   [UPF][INFO]   "+"UPF handling N4 SESSION ESTABILISHMENT REQUEST ")
     		N4SessionEstabilishmentRsp = {"imsi":args['imsi'],"CNTunnelID":args['CNTunnelID'],"UPFURI":"http://127.0.0.1:5012/nupf/v1/eNBUpfInterface"}
     		return json.dumps(N4SessionEstabilishmentRsp),200
     	elif operator.eq(args['MsgType'],"UEInitialDeregistrationReq"):
-    		print("[UPF][INFO]   "+"UPF Release N4 Session success and delete SMContext")
+    		print(CurrentPath+":39   [UPF][INFO]   "+"UPF Release N4 Session success and delete SMContext")
     		return None,200
     	
