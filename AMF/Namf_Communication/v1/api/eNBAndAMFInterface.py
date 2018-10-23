@@ -65,21 +65,25 @@ def N2PDUSessionReq(args):
                +CurrentPath+":60   [AMF][INFO]  "+"|    "+repr(logs.eNBConnected)+"           "+"|    "+repr(logs.UEConnected)+"        "+"    |    "+repr(logs.UEAttached)+"         "+"   |    "+repr(logs.s1uBearer)+"            |"+"\n"\
                         +CurrentPath+":61   [AMF][INFO]  "+"|----------------|-----------------|-----------------|-----------------|\n"
 	print(stcs)
-	print(CurrentPath+":61   [AMF][INFO]   "+"s1uBearer has been created successfully")
+	print(CurrentPath+":68   [AMF][INFO]   "+"s1uBearer has been created successfully")
 	if len(Maps) == 0:
 		print(CurrentPath+":68   [AMF][ERROR]   "+"no imsi exists")
 	for i in range(len(Maps)):
 		if operator.eq(Maps[i]['imsi'],args['imsi']) :
 			Port = Maps[i]['ueListenPort']
-			UEURI = "http://127.0.0.1:"+Port+"/nue/v1/fromamfside"
+			UEURI = "http://"+Port+"/nue/v1/fromamfside"
 			Msg2UE = {"AllocatedUEIp":args['AllocatedUEIp'],"UPFURI":args['UPFURI'],"CNTunnelID":args['CNTunnelID'],"imsi":args['imsi'],"status":"PDUSessionEstabilishmentReqAccept"}
+			#ReqNumber = 1
+			#while(ReqNumber<5):
 			r = requests.post(UEURI,data=Msg2UE)
+				#ReqNumber += 1
+			if r.status_code == 200:
+				print(CurrentPath+":78   [AMF][INFO]   "+"return Req Accept infos to UE")
+				#break
+			else:
+				print(CurrentPath+":78   [AMF][INFO]   "+"Not return Req Accept infos to UE")
 			break
-	#logs.s1uBearer += 1
-	#stcs = logs.info+"|    "+repr(logs.eNBConnected)+"           "+"|    "+repr(logs.UEConnected)+"        "+"    |    "+repr(logs.UEAttached)+"         "+"   |    "+repr(logs.s1uBearer)+"            |"+"\n"\
-        #                +"|----------------|-----------------|-----------------|-----------------|\n"
-	#print(stcs)
-	#print("[AMF][INFO]   "+"s1uBearer has been created successfully")
+				
 
 def statistics():
 	stcs = logs.info+CurrentPath+":74   [AMF][INFO]  "+"|    "+repr(logs.eNBConnected)+"           "+"|    "+repr(logs.UEConnected)+"        "+"    |    "+repr(logs.UEAttached)+"         "+"   |    "+repr(logs.s1uBearer)+"            |"+"\n"\
@@ -256,7 +260,7 @@ class INTERFACEeNBSide(Resource):
         elif operator.eq(MsgType,"ReleaseANReq"):
         	print(CurrentPath+":223   [AMF][INFO]   "+"Receive Release AN Request")
         	logs.eNBConnected -= 1
-        	stcs = logs.info+CurrentPath+":238  [AMF][INFO]   "+"|    "+repr(logs.eNBConnected)+"           "+"|    "+repr(logs.UEConnected)+"        "+"    |    "+repr(logs.UEAttached)+"         "+"   |    "+repr(logs.s1uBearer)+"            |"+"\n"\
+        	stcs = logs.info+CurrentPath+":238  [AMF][INFO]  "+"|    "+repr(logs.eNBConnected)+"           "+"|    "+repr(logs.UEConnected)+"        "+"    |    "+repr(logs.UEAttached)+"         "+"   |    "+repr(logs.s1uBearer)+"            |"+"\n"\
                         +CurrentPath+":239  [AMF][INFO]  "+"|----------------|-----------------|-----------------|-----------------|\n"
         	print(CurrentPath+":227   [AMF][INFO]  "+"statistics recoded in AMF")
         	print(stcs)

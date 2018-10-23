@@ -39,10 +39,4 @@ routes = [
     dict(resource=NONUEN2MSG, urls=['/non-ue-n2-messages'], endpoint='non-ue-n2-msg'),
     dict(resource=NONUEN2MSGSUB, urls=['/non-ue-n2-messages/subscriptions'], endpoint='non-ue-n2-msg-subscriptions'),
     dict(resource=ONENONUEN2MSGSUB, urls=['/non-ue-n2-messages/subscriptions/<int:n2NotifySubscriptionId>'], endpoint='non-ue-n2-msg-subscriptions-ref'),
-
-
-
-
-
-
 ]

@@ -1,0 +1,9 @@
+#sudo brctl delif br0 port
+#sudo brctl delif br0 enp3s0
+#sudo ifconfig port down
+#sudo ip tuntap del dev port mode tap
+#sudo ifconfig br0 down
+#sudo brctl delbr br0
+#sudo dhclient enp3s0 
+
+sudo brctl delif br0 data

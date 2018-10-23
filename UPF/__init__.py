@@ -5,6 +5,7 @@ from flask import Flask
 
 import v1
 
+#CurrentPath = '~/5GCORE/UPF/__init__.py'
 
 def create_app():
     app = Flask(__name__, static_folder='static')
@@ -14,4 +15,5 @@ def create_app():
     return app
 
 if __name__ == '__main__':
-    create_app().run(port=5012,debug=True)
+	#p = subprocess.Popen('sudo brctl addbr br0',shell=True,close_fds=True,stdin=subprocess.PIPE,stdout=subprocess.PIPE)
+	create_app().run(port=5012,debug=True)

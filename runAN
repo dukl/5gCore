@@ -35,10 +35,10 @@ exit()
 {
  ps -ef | grep python | cut -c 9-15| xargs kill -s 9
 } 
-ps -ef | grep python | cut -c 9-15| xargs kill -s 9
+#ps -ef | grep python | cut -c 9-15| xargs kill -s 9
 
-  python ~/5GCORE/AMF/Namf_Communication/__init__.py \
-& python ~/5GCORE/SMF/Nsmf_PDUSession/__init__.py \
-& python ~/5GCORE/AUSF/__init__.py \
-& python ~/5GCORE/UPF/__init__.py 
-#& python ~/5GCORE/UE/AN.py
+#  python ~/5GCORE/AMF/Namf_Communication/__init__.py \
+#& python ~/5GCORE/SMF/Nsmf_PDUSession/__init__.py \
+#& python ~/5GCORE/AUSF/__init__.py \
+#& python ~/5GCORE/UPF/__init__.py 
+ python ~/5GCORE/UE/AN.py 28192 208930000000001 10.112.223.73 5555

@@ -63,4 +63,4 @@ if __name__ == '__main__':
 	#statistics()
 	#t = Thread(target = LoopLog,args=())
 	#t.start()
-	create_app().run(port=5001,debug=True)
+	create_app().run(host='0.0.0.0',port=5001,debug=True)
