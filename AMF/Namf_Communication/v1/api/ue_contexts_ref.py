@@ -12,11 +12,14 @@ class ONEUECONTEXT(Resource):
     def post(self,ueContextID):
     	print(ueContextID)
     	args = parser.parse_args()
+        return "visit AMF Communication service operation(http method: post) : /namf-comm/v1/ue-contexts/<int:ueContextID>"
 
     def patch(self,ueContextID):
     	print("patch method")
+	return "visit AMF Communication service operation(http method: patch) : /namf-comm/v1/ue-contexts/<int:ueContextID>"
     	pass
 
     def put(self,ueContextID):
     	print("put method")
+        return "visit AMF Communication service operation(http method: delete) : /namf-comm/v1/ue-contexts/<int:ueContextID>"
     	pass

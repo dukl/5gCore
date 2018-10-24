@@ -1,0 +1,41 @@
+## run AMF COMMUNICATION SERVICE
+#(cd ~/5GCORE/AMF/Namf_Communication
+#python __init__.py)
+#sleep 3
+#&
+## run SMF PDUSESSION SERVICE
+#(cd ~/5GCORE/SMF/Nsmf_PDUSession
+#python __init__.py)
+#sleep 3
+#&
+## run AUSF SERVICE
+#(cd ~/5GCORE/AUSF
+#python __init__.py)
+#sleep 3
+#&
+## run UDM UEAUTHENTICATION SERVICE
+#(cd ~/5GCORE/UDM/Nudm_UEAuthentication
+#python __init__.py)
+#sleep 3
+#&
+## run UPF
+#(cd ~/5GCORE/UPF
+#python __init__.py)
+#sleep 3
+#&
+## run AN
+#(cd ~/5GCORE/UE
+#python AN.py)
+
+
+#!/bin/bash
+trap "exit" 2
+
+exit()
+{
+ ps -ef | grep python | cut -c 9-15| xargs kill -s 9
+} 
+#ps -ef | grep python | cut -c 9-15| xargs kill -s 9
+
+  python ~/5GCORE/SMF/Nsmf_EventExposure/__init__.py \
+& python ~/5GCORE/SMF/Nsmf_PDUSession/__init__.py 

@@ -12,7 +12,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 Base = declarative_base()
 
-from .. import users
+#from .. import users
 #from users import Users
 
 parser = reqparse.RequestParser()

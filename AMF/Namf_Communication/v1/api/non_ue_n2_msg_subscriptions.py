@@ -10,4 +10,5 @@ parser.add_argument('MCC')
 class NONUEN2MSGSUB(Resource):
 
     def post(self):
+        return "visit AMF Communication service operation(http method: post) : /namf-comm/v1/non-ue-n2-messages/subscriptions"	
         args = parser.parse_args()

@@ -11,3 +11,4 @@ class UECONTEXTS(Resource):
 
     def post(self):
         args = parser.parse_args()
+        return "visit AMF Communication service operation(http method: post) : /namf-comm/v1/ue-contexts"

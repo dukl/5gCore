@@ -12,7 +12,9 @@ class ONEN1N2MSGSUB(Resource):
     def put(self,ueContextID,subscriptionId):
     	args = parser.parse_args()
     	print(ueContextID,subscriptionId)
+        return "visit AMF Communication service operation(http method: put) : /namf-comm/v1/ue-contexts/<int:ueContextID>/n1-n2-messages/subscriptions/<int:subscriptionId>"
 
     def delete(self,ueContextID,subscriptionId):
     	print(ueContextID,subscriptionId)
+        return "visit AMF Communication service operation(http method: delete) : /namf-comm/v1/ue-contexts/<int:ueContextID>/n1-n2-messages/subscriptions/<int:subscriptionId>"
     	pass

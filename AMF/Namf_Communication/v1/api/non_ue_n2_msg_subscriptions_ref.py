@@ -12,3 +12,4 @@ class ONENONUEN2MSGSUB(Resource):
     def delete(self,n2NotifySubscriptionId):
     	args = parser.parse_args()
     	print(n2NotifySubscriptionId)
+        return "visit AMF Communication service operation(http method: delete) : /namf-comm/v1/non-ue-n2-messages/subscriptions/<int:n2NotifySubscriptionId>"

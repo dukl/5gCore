@@ -11,3 +11,4 @@ class SUBSCRIPTIONS(Resource):
 
     def post(self):
         args = parser.parse_args()
+        return "visit AMF EventExposure service operation : /namf-evts/v1/subscriptions "

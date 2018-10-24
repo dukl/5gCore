@@ -13,3 +13,4 @@ class ProvideInfo(Resource):
     def get(self,ueContextID):
         args = parser.parse_args()
     	print("[AMF][INFO]   "+"AMF Receives request for Namf_MT service")
+        return "visit AMF MT service operation(http method: get) : /namf-mt/v1/ue_contexts/<int:ueContextId>" 

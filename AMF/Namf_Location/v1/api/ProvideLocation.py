@@ -14,6 +14,7 @@ class PROVIDELOCATION(Resource):
     def post(self,ueContextID):
         args = parser.parse_args()
         print(args)
+        return "visit AMF Location service operation(http method: post) : /namf-loc/v1/ue-contexts/<int:ueContext>/provide"
 
         
         

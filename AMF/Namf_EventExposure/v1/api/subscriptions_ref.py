@@ -11,6 +11,8 @@ class ONESUBSCRIPTION(Resource):
 
     def patch(self,subscriptionId):
         args = parser.parse_args()
+        return "visit AMF EventExposure service operation(http method: patch) : /namf-evts/v1/subscriptions/<int:subscriptionId> "
 
     def delete(self,subscriptionId):
+        return "visit AMF EventExposure service operation(http method: delete) : /namf-evts/v1/subscriptions/<int:subscriptionId> "
     	pass

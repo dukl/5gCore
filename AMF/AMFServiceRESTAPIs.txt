@@ -1,0 +1,74 @@
+AMF Communication service operations and its rest apis:
+
+127.0.0.1:5001/namf-comm/v1/ue-contexts/<int:ueContextID>
+post patch put
+
+127.0.0.1:5001/namf-comm/v1/ue-contexts/<int:ueContextID>/n1-n2-messages/subscriptions
+post
+
+127.0.0.1:5001/namf-comm/v1/non-ue-n2-messages/subscriptions
+post
+
+127.0.0.1:5001/namf-comm/v1/subscriptions/<int:subscriptionId>
+delete
+
+127.0.0.1:5001/namf-comm/v1/ue-contexts/<int:ueContextID>/n1-n2-messages/subscriptions/<int:subscriptionId>
+put delete
+
+127.0.0.1:5001/namf-comm/v1/non-ue-n2-messages/subscriptions/<int:n2NotifySubscriptionId>
+delete
+
+127.0.0.1:5001/namf-comm/v1/ue-contexts
+post
+
+127.0.0.1:5001/namf-comm/v1/ue-contexts/<int:ueContextID>/release
+post
+
+127.0.0.1:5001/namf-comm/v1/ue-contexts/<int:ueContextID>/assignEbi
+post
+
+127.0.0.1:5001/namf-comm/v1/ue-contexts/<int:ueContextID>/transfer
+post
+
+127.0.0.1:5001/namf-comm/v1/non-ue-n2-messages
+post
+
+127.0.0.1:5001/namf-comm/v1/subscriptions
+post
+
+
+
+
+AMF EventExposure service operations and its rest apis:
+
+127.0.0.1:5002/namf-evts/v1/subscriptions
+post
+
+127.0.0.1:5002/namf-evts/v1/subscriptions/<int:subscriptionId>
+patch delete
+
+
+
+AMF MT service operations and its apis:
+
+127.0.0.1:5003/namf-mt/v1/ue_contexts/<int:ueContextId>
+get
+
+127.0.0.1:5003/namf-mt/v1/ue_contexts/<int:ueContextId>/ue_reachind
+put
+
+
+
+
+AMF Location services operations and its apis:
+
+127.0.0.1:5004/namf-loc/v1/ue-contexts/<int:ueContext>/provide
+post
+
+
+curl request examples:
+GET    :     curl 127.0.0.1:5003/namf-mt/v1/ue_contexts/<int:ueContextId>
+POST   :     curl 127.0.0.1:5002/namf-evts/v1/subscriptions/212 -X POST -d "hello"
+DELETE :     curl 127.0.0.1:5002/namf-evts/v1/subscriptions/212 -X DELETE  -d "hello"
+PATCH  :     curl 127.0.0.1:5002/namf-evts/v1/subscriptions/212 -X PATCH -d "hello"
+PUT    :     curl 127.0.0.1:5002/namf-evts/v1/subscriptions/212 -X PUT -d "hello"

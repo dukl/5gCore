@@ -1,14 +1,15 @@
 sudo brctl addbr br0
 
-sudo ip tuntap add dev data mode tap
-sudo ifconfig data up 
-#sudo brctl addif br0 data
+sudo ip tuntap add dev dataTransfer mode tap
+sudo ifconfig dataTransfer up 
+#sudo brctl addif br0 dataTransfer
 
 sudo ip tuntap add dev sigaling mode tap
 sudo ifconfig sigaling up
 sudo brctl addif br0 sigaling
 
 sudo brctl addif br0 enp3s0
+sudo ifconfig enp3s0 0.0.0.0
 
 sudo ifconfig br0 192.168.1.109/24 up
 #sudo dhclient br0

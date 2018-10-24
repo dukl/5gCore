@@ -10,4 +10,5 @@ parser.add_argument('MCC')
 class N1N2MSGSUB(Resource):
 
     def post(self,ueContextID):
+        return "visit AMF Communication service operation(http method: post) : /namf-comm/v1/ue-contexts/<int:ueContextID>/n1-n2-messages/subscriptions"
         args = parser.parse_args()

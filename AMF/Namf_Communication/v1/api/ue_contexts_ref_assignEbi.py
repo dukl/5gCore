@@ -11,3 +11,4 @@ class ONEUECONTEXTASSIGNEBI(Resource):
 
     def post(self,ueContextID):
         args = parser.parse_args()
+        return "visit AMF Communication service operation(http method: post) : /namf-comm/v1/ue-contexts/<int:ueContextID>/assignEbi"

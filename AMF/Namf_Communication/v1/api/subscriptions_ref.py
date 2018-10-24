@@ -11,4 +11,5 @@ class ONESUBSCRIPTION(Resource):
 
     def delete(self,subscriptionId):
     	print(subscriptionId)
+        return "visit AMF Communication service operation(http method: delete) : /namf-comm/v1/subscriptions/<int:subscriptionId>"
     	args = parser.parse_args()
