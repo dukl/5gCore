@@ -40,6 +40,8 @@ TAC_VALID = "01"
 ##parse parameters of SMContext 
 parser.add_argument('DeregistrationType')
 parser.add_argument('AccessType')
+parser.add_argument('CreateDataConnection')
+#eNB Collections
 #eNB Collections
 eNBCollection = []
 #map of imsi and ueListenPort
@@ -216,7 +218,7 @@ class INTERFACEeNBSide(Resource):
         	print(CurrentPath+":178   [AMF][INFO]   "+"call SMF Create SMContext operation with http method(post)")
        		print(CurrentPath+":179   [AMF][INFO]   "+"post http://127.0.0.1:5005/nsmf-pdusession/v1/sm-contexts")
         	PDUSessionCreateSMContextReq = "http://127.0.0.1:5005/nsmf-pdusession/v1/sm-contexts"
-        	SmContextCreateData = {"imsi":args['imsi'],"PDUSessionID":args['PDUSessionID'],"RequestType":args['RequestType'],"PDUType":args['PDUType']}
+        	SmContextCreateData = {"imsi":args['imsi'],"PDUSessionID":args['PDUSessionID'],"RequestType":args['RequestType'],"PDUType":args['PDUType'],"CreateDataConnection":args['CreateDataConnection']}
         	r = requests.post(PDUSessionCreateSMContextReq,data=SmContextCreateData)
        		if r.status_code == 201:
         		print(CurrentPath+":184   [AMF][INFO]   "+"SmContextCreatedData")
@@ -239,11 +241,11 @@ class INTERFACEeNBSide(Resource):
         	
         elif operator.eq(MsgType,"UEInitialDeregistrationReq"):
         	print(CurrentPath+":203   [AMF][INFO]   "+"Receive UE Initial Deregistration Request")
-        	print(CurrentPath+":204   [AMF][INFO]   "+"post http://127.0.0.1:5005/nsmf-pdusession/v1/sm-contexts/"+args['imsi']+"/release")
-        	ReleaseSMContextReq2SMF = "http://127.0.0.1:5005/nsmf-pdusession/v1/sm-contexts/"+args['imsi']+"/release"
+        	#print(CurrentPath+":204   [AMF][INFO]   "+"post http://127.0.0.1:5005/nsmf-pdusession/v1/sm-contexts/"+args['imsi']+"/release")
+        	ReleaseSMContextReq2SMF = "http://127.0.0.1:5005/nsmf-pdusession/v1/sm-contexts/"+"208930000000001"+"/release"
         	r = requests.post(ReleaseSMContextReq2SMF,data=args)	
        		if r.status_code == 204:
-        		print(CurrentPath+":208   [AMF][INFO]   "+"Release SMContext about "+args['imsi']+" success")
+        		#print(CurrentPath+":208   [AMF][INFO]   "+"Release SMContext about "+args['imsi']+" success")
         		print(CurrentPath+":209   [AMF][INFO]   "+"SMF Response 204 No Content")
         		logs.s1uBearer -= 1
         		logs.UEAttached -= 1
@@ -277,6 +279,8 @@ class INTERFACEeNBSide(Resource):
         elif operator.eq(MsgType,"InitialLoopLog"):
         	timer = threading.Timer(timer_interval,statistics)
         	timer.start()
+	else:
+		print(CurrentPath+":283   [AMF][INFO]  "+"AMF doesn't recv any MsgType")
         
         
         

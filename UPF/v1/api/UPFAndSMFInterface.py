@@ -50,17 +50,17 @@ class INTERFACE(Resource):
 			#p = subprocess.Popen('sudo brctl addif br0 port',shell=True)
 			#print(CurrentPath+":51   [UPF][INFO]   "+"sudo brctl addif br0 enp3s0")
 			#p = subprocess.Popen('sudo brctl addif br0 enp3s0',shell=True)
-			print(CurrentPath+":53   [UPF][INFO]   "+"sudo ifconfig data up")
-			p = subprocess.Popen('sudo ifconfig data up',shell=True)
-			print(CurrentPath+":55   [UPF][INFO]   "+"sudo brctl addif br0 data")
-			p = subprocess.Popen('sudo brctl addif  br0 data',shell=True)
+			print(CurrentPath+":53   [UPF][INFO]   "+"sudo ip link set tap1 up")
+			p = subprocess.Popen('sudo ip link set tap1 up',shell=True)
+			print(CurrentPath+":55   [UPF][INFO]   "+"sudo brctl addif br0 tap1")
+			p = subprocess.Popen('sudo brctl addif  br1 tap1',shell=True)
     		N4SessionEstabilishmentRsp = {"imsi":args['imsi'],"CNTunnelID":args['CNTunnelID'],"UPFURI":"http://127.0.0.1:5012/nupf/v1/eNBUpfInterface"}
     		return json.dumps(N4SessionEstabilishmentRsp),200
     	elif operator.eq(args['MsgType'],"UEInitialDeregistrationReq"):
     		print(CurrentPath+":60   [UPF][INFO]   "+"UPF Release N4 Session success and delete SMContext")
     		print(CurrentPath+":61   [UPF][INFO]   "+"UPF delete configuration")
-    		print(CurrentPath+":62   [UPF][INFO]   "+"sudo brctl delif br0 data")
-    		p = subprocess.Popen('sudo brctl delif br0 data',shell=True)
+    		print(CurrentPath+":62   [UPF][INFO]   "+"sudo brctl delif br0 tap1")
+    		p = subprocess.Popen('sudo brctl delif br1 tap1',shell=True)
     		#print(CurrentPath+":64   [UPF][INFO]   "+"sudo brctl delif br0 enp3s0")
     		#p = subprocess.Popen('sudo brctl delif br0 enp3s0',shell=True)
     		#print(CurrentPath+":66   [UPF][INFO]   "+"sudo ip tuntap del dev port mode tap")

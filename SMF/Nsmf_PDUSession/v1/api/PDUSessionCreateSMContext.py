@@ -16,6 +16,8 @@ parser.add_argument('RequestType')
 parser.add_argument('PDUSessionID')
 parser.add_argument('PDUType')
 parser.add_argument('imsi')
+parser.add_argument('CreateDataConnection')
+
 
 CurrentPath = "~/5GCORE/SMF/Nsmf_PDUSession/v1/api/PDUSessionCreateSMContext.py"
 
@@ -26,7 +28,7 @@ def SMFDoingSomething(args):
 	print(CurrentPath+":26   [SMF][INFO]   "+"SMF SENDS N4 SESSION ESTABILISHMENT REQUEST TO UPF")
 	print(CurrentPath+":27   [SMF][INFO]   "+"post http://127.0.0.1:5012/nupf/v1/UpfSmfInterface")
 	N4SessionEstabilishmentReq = "http://127.0.0.1:5012/nupf/v1/UpfSmfInterface"
-	N4SessionMsg = {"imsi":args['imsi'],"CNTunnelID":"23124","InactivityTimer":"20s","MsgType":"N4SessionEstabilishmentReq","CreateDataConnection":"TRUE"}
+	N4SessionMsg = {"imsi":args['imsi'],"CNTunnelID":"23124","InactivityTimer":"20s","MsgType":"N4SessionEstabilishmentReq","CreateDataConnection":args['CreateDataConnection']}
 	r = requests.post(N4SessionEstabilishmentReq,data=N4SessionMsg)
 	if r.status_code == 200:
 		print(CurrentPath+":32   [SMF][INFO]   "+"SMF RECEIVES N4 SESSION ESTABILISHMENT RESPONSE FROM UPF")

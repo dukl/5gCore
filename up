@@ -1,12 +1,19 @@
 sudo brctl addbr br0
 
-sudo ip tuntap add dev dataTransfer mode tap
-sudo ifconfig dataTransfer up 
+#sudo ip tuntap add dev dataTransfer mode tap
+#sudo ifconfig dataTransfer up 
 #sudo brctl addif br0 dataTransfer
 
-sudo ip tuntap add dev sigaling mode tap
-sudo ifconfig sigaling up
-sudo brctl addif br0 sigaling
+sudo tunctl -b
+sudo ip link set tap0 up
+sudo brctl addif br0 tap0
+
+sudo tunctl -b
+sudo ip link set tap1 up
+sudo brctl addif br0 tap1
+#sudo ip tuntap add dev sigaling mode tap
+#sudo ifconfig sigaling up
+#sudo brctl addif br0 sigaling
 
 sudo brctl addif br0 enp3s0
 sudo ifconfig enp3s0 0.0.0.0

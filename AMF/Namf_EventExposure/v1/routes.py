@@ -17,7 +17,4 @@ from .api.subscriptions_ref import ONESUBSCRIPTION
 routes = [
     dict(resource=SUBSCRIPTIONS, urls=['/subscriptions'], endpoint='subscriptions'),
     dict(resource=ONESUBSCRIPTION, urls=['/subscriptions/<int:subscriptionId>'], endpoint='subscriptions-ref'),
-
-
-
 ]

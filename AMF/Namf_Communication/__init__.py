@@ -56,11 +56,4 @@ def create_app():
     return app
 
 if __name__ == '__main__':
-
-	#timer = threading.Timer(10.0, statistics)
-	#timer.start()
-	#global logs.eNBConnected,logs.UEConnected,logs.UEAttached,logs.s1uBearer
-	#statistics()
-	#t = Thread(target = LoopLog,args=())
-	#t.start()
 	create_app().run(host='0.0.0.0',port=5001,debug=True)

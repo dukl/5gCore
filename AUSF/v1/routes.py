@@ -14,6 +14,4 @@ from .api.Authenticate import AUTH
 
 routes = [
     dict(resource=AUTH, urls=['/authenticate'], endpoint='Authenticate'),
-
-
 ]

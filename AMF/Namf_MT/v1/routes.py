@@ -16,6 +16,4 @@ from .api.ProvideDomainSelectionInfo import ProvideInfo
 routes = [
     dict(resource=UEREACHIND, urls=['/ue_contexts/<int:ueContextId>/ue_reachind'], endpoint='ue_reachind'),
     dict(resource=ProvideInfo, urls=['/ue_contexts/<int:ueContextId>'], endpoint='ProvideDomainSelectionInfo'),
-
-
 ]

@@ -1,0 +1,1 @@
+sudo brctl delif br0 tap1

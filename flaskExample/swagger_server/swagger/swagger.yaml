@@ -1,0 +1,269 @@
+---
+swagger: "2.0"
+info:
+  description: "AMF Communication Service"
+  version: "1.PreR15.0.0"
+  title: "AMF Communication Service"
+security:
+- oAuth2Clientcredentials: []
+paths:
+  /ue-contexts/{ueContextId}:
+    put:
+      tags:
+      - "Create UE Contxt"
+      summary: "Namf_Communication CreateUEContext service Operation"
+      operationId: "create_ue_context"
+      parameters:
+      - name: "ueContextId"
+        in: "path"
+        description: "UE Context Identifier"
+        required: true
+      responses:
+        201:
+          description: "UE context successfully created."
+        403:
+          description: "Forbidden"
+        default:
+          description: "Unexpected error"
+      x-swagger-router-controller: "swagger_server.controllers.create_ue_contxt_controller"
+  /ue-contexts/{ueContextId}/release:
+    post:
+      tags:
+      - "Release UE Contxt"
+      summary: "Namf_Communication ReleaseUEContext service Operation"
+      operationId: "release_ue_context"
+      parameters:
+      - name: "ueContextId"
+        in: "path"
+        description: "UE Context Identifier"
+        required: true
+      responses:
+        204:
+          description: "UE Context successfully released"
+        400:
+          description: "Bad request"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+        500:
+          description: "Internal Server Error"
+        503:
+          description: "Service Unavailable"
+        default:
+          description: "Unexpected error"
+      x-swagger-router-controller: "swagger_server.controllers.release_ue_contxt_controller"
+  /ue-contexts/{ueContextId}/assignEbi:
+    post:
+      tags:
+      - "EBI Assignment"
+      summary: "Namf_Communication EBI Assignment service Operation"
+      operationId: "ebi_assignment"
+      parameters:
+      - name: "ueContextId"
+        in: "path"
+        description: "UE Context Identifier"
+        required: true
+      responses:
+        200:
+          description: "EBI Assignment successfully performed."
+        403:
+          description: "Forbidden"
+        default:
+          description: "Unexpected error"
+      x-swagger-router-controller: "swagger_server.controllers.ebi_assignment_controller"
+  /ue-contexts/{ueContextId}/transfer:
+    post:
+      tags:
+      - "UE Context Transfer"
+      summary: "Namf_Communication UEContextTransfer service Operation"
+      operationId: "ue_context_transfer"
+      parameters:
+      - name: "ueContextId"
+        in: "path"
+        description: "UE Context Identifier"
+        required: true
+      responses:
+        200:
+          description: "UE context transfer successfully initiated."
+        403:
+          description: "Forbidden"
+        default:
+          description: "Unexpected error"
+      x-swagger-router-controller: "swagger_server.controllers.ue_context_transfer_controller"
+  /ue-contexts/{ueContextId}/n1-n2-messages:
+    post:
+      tags:
+      - "N1N2 Message Transfer"
+      summary: "Namf_Communication N1N2 Message Transfer (UE Specific) service Operation"
+      operationId: "n1_n2_message_transfer"
+      parameters:
+      - name: "ueContextId"
+        in: "path"
+        description: "UE Context Identifier"
+        required: true
+      responses:
+        200:
+          description: "N1N2 Message Transfer successfully initiated."
+        202:
+          description: "N1N2 Message Transfer accepted."
+        307:
+          description: "Temporary Redirect"
+        404:
+          description: "Not Found"
+        409:
+          description: "Conflicts"
+        504:
+          description: "Gateway Timeout"
+        default:
+          description: "Unexpected error"
+      x-swagger-router-controller: "swagger_server.controllers.n1_n2_message_transfer_controller"
+  /ue-contexts/{ueContextId}/n1-n2-messages/subscriptions:
+    post:
+      tags:
+      - "N1N2 Message Subscribe"
+      summary: "Namf_Communication N1N2 Message Subscribe (UE Specific) service Operation"
+      operationId: "n1_n2_message_subscribe"
+      parameters:
+      - name: "ueContextId"
+        in: "path"
+        description: "UE Context Identifier"
+        required: true
+      responses:
+        201:
+          description: "N1N2 Message Subscription successfully created."
+        default:
+          description: "Unexpected error"
+      x-swagger-router-controller: "swagger_server.controllers.n1_n2_message_subscribe_controller"
+  /ue-contexts/{ueContextId}/n1-n2-messages/subscriptions/{subscriptionId}:
+    delete:
+      tags:
+      - "N1N2 Message UnSubscribe"
+      summary: "Namf_Communication N1N2 Message UnSubscribe (UE Specific) service Operation"
+      operationId: "n1_n2_message_un_subscribe"
+      parameters:
+      #- name: "ueContextId"
+      #  in: "path"
+      #  description: "UE Context Identifier"
+      #  required: true
+      - name: "subscriptionId"
+        in: "path"
+        description: "Subscription Identifier"
+        required: true
+      responses:
+        204:
+          description: "N1N2 Message Subscription successfully removed."
+      x-swagger-router-controller: "swagger_server.controllers.n1_n2_message_un_subscribe_controller"
+  /non-ue-n2-messages/transfer:
+    post:
+      tags:
+      - "Non UE N2 Message Transfer"
+      summary: "Namf_Communication Non UE N2 Message Transfer service Operation"
+      operationId: "non_ue_n2_message_transfer"
+      parameters: []
+      responses:
+        200:
+          description: "Non UE N2 Message Transfer successfully initiated."
+        400:
+          description: "Bad Request"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+        500:
+          description: "Internal Server Error"
+        503:
+          description: "Service Unavailable"
+        default:
+          description: "Unexpected error"
+      x-swagger-router-controller: "swagger_server.controllers.non_ue_n2_message_transfer_controller"
+  /non-ue-n2-messages/subscriptions:
+    post:
+      tags:
+      - "Non UE N2 Info Subscribe"
+      summary: "Namf_Communication Non UE N2 Info Subscribe service Operation"
+      operationId: "non_ue_n2_info_subscribe"
+      parameters: []
+      responses:
+        201:
+          description: "Non UE N2 Info Subscription successfully created."
+        403:
+          description: "Forbidden"
+        default:
+          description: "Unexpected error"
+      x-swagger-router-controller: "swagger_server.controllers.non_ue_n2_info_subscribe_controller"
+  /non-ue-n2-messages/subscriptions/{n2NotifySubscriptionId}:
+    delete:
+      tags:
+      - "Non UE N2 Info UnSubscribe"
+      summary: "Namf_Communication Non UE N2 Info UnSubscribe service Operation"
+      operationId: "non_ue_n2_info_un_subscribe"
+      parameters:
+      - name: "n2NotifySubscriptionId"
+        in: "path"
+        description: "N2 info Subscription Identifier"
+        required: true
+      responses:
+        204:
+          description: "Non UE N2 INfo Subscription successfully removed."
+      x-swagger-router-controller: "swagger_server.controllers.non_ue_n2_info_un_subscribe_controller"
+  /subscriptions:
+    post:
+      tags:
+      - "AMF Status Change Subscribe"
+      summary: "Namf_Communication AMF Status Change Subscribe service Operation"
+      operationId: "amf_status_change_subscribe"
+      parameters: []
+      responses:
+        201:
+          description: "N1N2 Message Subscription successfully created."
+        400:
+          description: "Bad request"
+        403:
+          description: "Forbidden"
+        500:
+          description: "Internal Server Error"
+        503:
+          description: "Service Unavailable"
+        default:
+          description: "Unexpected error"
+      x-swagger-router-controller: "swagger_server.controllers.amf_status_change_subscribe_controller"
+  /subscriptions/{subscriptionId}:
+    put:
+      tags:
+      - "AMF Status Change Subscribe Modify"
+      summary: "Namf_Communication AMF Status Change Subscribe Modify service Operation"
+      operationId: "amf_status_change_subscribe_modfy"
+      parameters:
+      - name: "subscriptionId"
+        in: "path"
+        description: "AMF Status Change Subscription Identifier"
+        required: true
+      responses:
+        202:
+          description: "N1N2 Message Subscription successfully updated."
+        403:
+          description: "Forbidden"
+        default:
+          description: "Unexpected error"
+      x-swagger-router-controller: "swagger_server.controllers.amf_status_change_subscribe_modify_controller"
+    delete:
+      tags:
+      - "AMF Status Change UnSubscribe"
+      summary: "Namf_Communication AMF Status Change UnSubscribe service Operation"
+      operationId: "amf_status_change_un_subscribe"
+      parameters:
+      - name: "subscriptionId"
+        in: "path"
+        description: "AMF Status Change Subscription Identifier"
+        required: true
+      responses:
+        204:
+          description: "N1N2 Message Subscription successfully removed."
+        404:
+          description: "Not Found"
+      x-swagger-router-controller: "swagger_server.controllers.amf_status_change_un_subscribe_controller"
+definitions: {}
+externalDocs:
+  description: "Documentation"
+  url: "http://www.3gpp.org/ftp/Specs/archive/29_series/29.518/29518-120.zip"
